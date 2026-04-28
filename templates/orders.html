@@ -1,0 +1,13 @@
+
+{% extends 'base.html' %}
+{% block content %}
+<h4>My Orders</h4>
+{% for o in orders %}
+<div class="card p-2 mb-2">
+    <div>Order #{{o.id}}</div>
+    <div>Total: ₹{{o.total_price}}</div>
+    <div>Status: <b>{{o.status}}</b></div>
+    <div>Payment: {{o.payment_method}} | Paid: {{o.is_paid}}</div>
+</div>
+{% endfor %}
+{% endblock %}

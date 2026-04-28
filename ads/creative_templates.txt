@@ -1,0 +1,5 @@
+
+HOOK: "Tired of messy kitchen?"
+DEMO: show problem -> product use
+OFFER: "Today ₹249 only"
+CTA: "Order now"

@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!-- 🎬 BANNER -->
+<div id="carouselExample" class="carousel slide mt-3" data-bs-ride="carousel">
+
+    <div class="carousel-inner">
+
+        <div class="carousel-item active">
+            <img src="/static/images/banner1.jpg" class="d-block w-100">
+        </div>
+
+        <div class="carousel-item">
+            <img src="/static/images/banner2.jpg" class="d-block w-100">
+        </div>
+
+    </div>
+
+</div>
+
+<!-- 🔥 TRENDING SECTION -->
+<div class="container mt-4">
+
+    <h5 class="mb-3">🔥 Trending Products (2026)</h5>
+
+    <div class="row">
+
+        {% for product in products|slice:":4" %}
+        <div class="col-md-3 mb-3">
+
+            <div class="product-card text-center">
+
+                <img src="{{ product.image.url }}" class="product-img w-100">
+
+                <h6>{{ product.name }}</h6>
+
+                <p class="text-success">₹{{ product.price }}</p>
+
+                <a href="/product/{{product.id}}/" class="btn btn-primary w-100">
+                    View Details
+                </a>
+
+            </div>
+
+        </div>
+        {% endfor %}
+
+    </div>
+</div>
+
+<!-- 🔍 FILTER BAR -->
+<div class="container mt-3">
+    <form method="GET" class="row g-2">
+
+        <!-- CATEGORY DROPDOWN -->
+        <div class="col-md-3">
+            <select name="category" class="form-control">
+                <option value="">All Categories</option>
+                {% for c in categories %}
+                    <option value="{{ c.id }}">{{ c.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <!-- SEARCH -->
+        <div class="col-md-3">
+            <input type="text" name="search" class="form-control" placeholder="Search products">
+        </div>
+
+        <!-- MIN PRICE -->
+        <div class="col-md-2">
+            <input type="number" name="min_price" class="form-control" placeholder="Min ₹">
+        </div>
+
+        <!-- MAX PRICE -->
+        <div class="col-md-2">
+            <input type="number" name="max_price" class="form-control" placeholder="Max ₹">
+        </div>
+
+        <!-- BUTTON -->
+        <div class="col-md-2">
+            <button class="btn btn-primary w-100">Apply</button>
+        </div>
+
+    </form>
+</div>
+
+<!-- 🛒 PRODUCTS -->
+<div class="container mt-4">
+    <div class="row">
+
+        {% for product in products %}
+        <div class="col-md-3 mb-4">
+
+            <div class="product-card text-center">
+
+                <img src="{{ product.image.url }}" class="product-img w-100">
+
+                <h6 class="mt-2">{{ product.name }}</h6>
+
+                <p class="text-success fw-bold">₹{{ product.price }}</p>
+
+                <a href="/add-to-cart/{{product.id}}/" class="btn btn-warning w-100">
+                    Add to Cart
+                </a>
+
+            </div>
+
+        </div>
+        {% endfor %}
+
+    </div>
+</div>
+
+{% endblock %}

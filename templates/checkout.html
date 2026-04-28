@@ -1,0 +1,13 @@
+
+{% extends 'base.html' %}
+{% block content %}
+<h4>Total: ₹{{ total }}</h4>
+<form method="post">
+    {% csrf_token %}
+    <select name="payment" class="form-control mb-2">
+        <option value="COD">Cash on Delivery</option>
+        <option value="ONLINE">Online Payment</option>
+    </select>
+    <button class="btn btn-success">Place Order</button>
+</form>
+{% endblock %}
