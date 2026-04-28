@@ -28,3 +28,4 @@ whitenoise==6.12.0
 # 🔥 ADD THESE
 setuptools
 wheel
+django-cloudinary-storage==0.3.0
