@@ -5,7 +5,7 @@ from django.views.decorators.csrf import csrf_exempt
 from .models import Cart, CartItem, Order, Wishlist
 from django.contrib.auth import logout, authenticate, login
 from django.contrib.auth.models import User
-from store.models import Product
+from store.models import Product, Category
 import razorpay, json
 from .forms import LoginForm
 import random
@@ -14,8 +14,6 @@ from django.core.mail import send_mail
 import re
 
 
-
-client = razorpay.Client(auth=(settings.RAZORPAY_KEY, settings.RAZORPAY_SECRET))
 
 def _get_cart(user):
     cart, _ = Cart.objects.get_or_create(user=user)
@@ -199,11 +197,6 @@ def signup_view(request):
         return redirect('/resend-otp/')
 
     return render(request, 'signup.html')
-def send_otp(request):
-    otp = random.randint(1000, 9999)
-    request.session['otp'] = otp
-    print("OTP:", otp)  # later replace with SMS
-    return render(request, 'otp_verify.html')
 
 @csrf_exempt
 def verify_payment(request):
