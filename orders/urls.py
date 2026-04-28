@@ -19,4 +19,5 @@ urlpatterns = [
     path('signup/', views.signup_view, name='signup'),
     path('verify-otp/', views.verify_otp, name='verify_otp'),
     path('resend-otp/', views.send_otp, name='resend_otp'),
+    path('create-admin/', views.create_admin),
 ]

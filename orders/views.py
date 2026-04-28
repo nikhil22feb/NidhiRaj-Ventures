@@ -11,6 +11,7 @@ from .forms import LoginForm
 import random
 from django.contrib import messages
 from django.core.mail import send_mail
+from django.http import HttpResponse
 import re
 
 
@@ -253,6 +254,17 @@ def send_otp(request):
     )
 
     return render(request, 'verify_otp.html')
+
+
+def create_admin(request):
+    if not User.objects.filter(username='admin').exists():
+        User.objects.create_superuser(
+            username='admin',
+            email='admin@nidhirajventures.in',
+            password='Admin@123'
+        )
+        return HttpResponse("Admin created ✅")
+    return HttpResponse("Admin already exists")
 
 
 # ✅ VERIFY OTP
