@@ -255,7 +255,7 @@ def send_otp(request):
 
     return render(request, 'verify_otp.html')
 
-
+'''
 def create_admin(request):
     if not User.objects.filter(username='admin').exists():
         User.objects.create_superuser(
@@ -265,6 +265,9 @@ def create_admin(request):
         )
         return HttpResponse("Admin created ✅")
     return HttpResponse("Admin already exists")
+    
+'''
+
 
 
 # ✅ VERIFY OTP
